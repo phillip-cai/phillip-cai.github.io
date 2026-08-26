@@ -1,0 +1,91 @@
+/* ==========================================================================
+   base.css — reset, document defaults, shared primitives.
+   Nothing here is specific to a section of the page.
+   ========================================================================== */
+
+*{ box-sizing:border-box; }
+
+/* Renders the browser's own chrome dark: scrollbars, focus rings, and any
+   native form controls. Does not reach inside the Vimeo iframe — that's a
+   cross-origin document that styles itself. */
+html{
+  scroll-behavior:smooth;
+  color-scheme:dark;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-body);
+  font-weight:300;
+  font-size:var(--size-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{ color:inherit; }
+
+a:focus-visible{
+  outline:2px solid var(--ink);
+  outline-offset:3px;
+}
+
+/* height:auto keeps intrinsic width/height attributes from distorting the
+   image. Elements that size their own images (.film__frame) override it. */
+img{ max-width:100%; height:auto; display:block; }
+
+
+/* --------------------------------------------------------------------------
+   Shared primitives
+   -------------------------------------------------------------------------- */
+
+/* Page container */
+.wrap{
+  max-width:var(--measure);
+  margin:0 auto;
+  padding:0 var(--gutter);
+}
+
+/* Any small uppercase grotesque run of text */
+.u-caps{
+  font-family:var(--font-display);
+  text-transform:uppercase;
+  letter-spacing:var(--track-label);
+  /* text-indent compensates for trailing letter-space on centered text */
+  text-indent:var(--track-label);
+}
+
+/* Section label ("WORK", "ABOUT", "CONTACT") */
+.eyebrow{
+  font-family:var(--font-display);
+  font-size:var(--size-eyebrow);
+  font-weight:500;
+  letter-spacing:var(--track-eyebrow);
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 2rem;
+}
+
+/* Quiet link that darkens on hover — nav, social */
+.link-quiet{
+  font-family:var(--font-display);
+  font-size:var(--size-label);
+  letter-spacing:var(--track-label);
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--muted);
+  transition:color var(--ease);
+}
+
+.link-quiet:hover{ color:var(--ink); }
+
+
+/* --------------------------------------------------------------------------
+   Accessibility
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *{ transition:none !important; animation:none !important; }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Phillip Cai</title>
+<meta name="description" content="Phillip Cai is a writer-director based in Los Angeles.">
+
+<meta property="og:title" content="Phillip Cai">
+<meta property="og:description" content="Writer-director based in Los Angeles.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.phillipcai.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ===== header: keep identical across all three pages ===== -->
+  <header class="site-header">
+    <h1 class="wordmark"><a href="index.html">Phillip Cai</a></h1>
+    <p class="role u-caps">Writer &middot; Director</p>
+
+    <nav class="site-nav">
+      <a class="link-quiet" href="index.html" aria-current="page">Work</a>
+      <a class="link-quiet" href="about.html">About</a>
+      <a class="link-quiet" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <!-- Finished film. The poster is the entry; everything else — stills,
+         credits, the screener link — lives on family-style.html. Keeping
+         posters here and stills there is what stops the two aspect ratios
+         from competing in the same column. -->
+    <article class="film">
+      <a class="film__poster-link" href="family-style.html">
+        <img class="film__poster"
+             src="images/family-style-poster.jpg"
+             width="1200" height="1800"
+             alt="Poster for Family Style: two women eating takeout across a round dining table.">
+      </a>
+
+      <div class="film__text">
+        <div class="film__meta">
+          <h2 class="film__title"><a href="family-style.html">Family Style</a></h2>
+          <span class="film__tag">Short &middot; 2026 &middot; Writer / Director</span>
+        </div>
+
+        <p class="film__logline">
+          Two sisters share takeout at a cramped table when one
+          announcement changes everything between them.
+        </p>
+      </div>
+    </article>
+
+    <!-- In development. No poster — see .film--text in layout.css.
+         Duplicate an <article> for each additional project. The .film__text
+         wrapper is required even with no poster: .film is a flex row, so
+         loose children would sit side by side instead of stacking. -->
+    <article class="film film--text">
+      <div class="film__text">
+        <div class="film__meta">
+          <h2 class="film__title">Don't Want Face</h2>
+          <span class="film__tag">Short &middot; In development</span>
+        </div>
+
+        <p class="film__logline">
+          A young man who lies to his mother about his job ends up breaking
+          into a stranger's house.
+        </p>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="site-footer">
+    &copy; 2026 Phillip Cai
+  </footer>
+
+</div>
+</body>
+</html>

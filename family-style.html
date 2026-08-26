@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Family Style — Phillip Cai</title>
+<meta name="description" content="Family Style, a short film written and directed by Phillip Cai.">
+
+<meta property="og:title" content="Family Style — a short film by Phillip Cai">
+<meta property="og:description" content="Written and directed by Phillip Cai.">
+<meta property="og:type" content="video.movie">
+<meta property="og:url" content="https://www.phillipcai.com/family-style.html">
+<meta property="og:image" content="https://www.phillipcai.com/images/family-style-poster.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- ===== header: keep identical across all pages =====
+       No aria-current: this is a page under Work, not the Work page
+       itself, and marking it would make the nav claim something false. -->
+  <header class="site-header">
+    <h1 class="wordmark"><a href="index.html">Phillip Cai</a></h1>
+    <p class="role u-caps">Writer &middot; Director</p>
+
+    <nav class="site-nav">
+      <a class="link-quiet" href="index.html">Work</a>
+      <a class="link-quiet" href="about.html">About</a>
+      <a class="link-quiet" href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main class="page">
+
+    <h2 class="film-page__title">Family Style</h2>
+
+    <p class="film__tag">Short &middot; 2026 &middot; Writer / Director</p>
+
+    <div class="film__frame film-page__player">
+      <iframe
+        src="https://player.vimeo.com/video/1220465898"
+        title="Family Style"
+        loading="lazy"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+    <p class="film__logline film-page__logline">
+      Two sisters share takeout at a cramped table when one
+      announcement changes everything between them.
+    </p>
+
+    <!-- All five stills live here — this is the page with room for them.
+         Cropped to the film's native 1.90:1, no baked-in letterbox. -->
+    <div class="film__stills">
+      <img src="images/01-food-transfer.jpg" width="1920" height="1012" loading="lazy"
+           alt="Two women at a round dining table with takeout containers, one passing food across.">
+      <img src="images/02-vivian.jpg" width="1920" height="1012" loading="lazy"
+           alt="Close-up of a woman at the table, looking off camera.">
+      <img src="images/03-jessica.jpg" width="1920" height="1012" loading="lazy"
+           alt="Close-up of the other woman, eyes lowered.">
+      <img src="images/04-aftermath.jpg" width="1920" height="1012" loading="lazy"
+           alt="A kitchen: one woman stands while the other crouches to sweep up something broken.">
+      <img src="images/05-food.jpg" width="1920" height="1012" loading="lazy"
+           alt="Takeout containers and rice bowls left open on the table.">
+    </div>
+
+    <!-- Credits sit after the stills, like an end crawl. A <dl> because
+         that's what this is: each role is a term, each name its value.
+         Add a credit by copying a row; the columns handle themselves. -->
+    <dl class="credits film-page__credits">
+      <!-- One role, two names: a <dt> is allowed more than one <dd>, and the
+           grid stacks the extras under the first. Billing order is carried by
+           the order they appear in, not by sharing a line. -->
+      <div class="credits__row">
+        <dt class="credits__role">Starring</dt>
+        <dd class="credits__name">Kathy Chang</dd>
+        <dd class="credits__name">Katy Ho</dd>
+      </div>
+      <div class="credits__row">
+        <dt class="credits__role">Director of Photography</dt>
+        <dd class="credits__name">Michael Frazier</dd>
+      </div>
+      <div class="credits__row">
+        <dt class="credits__role">Gaffer</dt>
+        <dd class="credits__name">Taiki Mori</dd>
+      </div>
+      <div class="credits__row">
+        <dt class="credits__role">Production Sound</dt>
+        <dd class="credits__name">Johnny Caicedo</dd>
+      </div>
+      <!-- Broken by hand. The role column is sized to its longest label, so
+           left unbroken this one sets that width at every screen size and
+           squeezes the names into two and three lines on a phone. The break
+           hands the width back to DIRECTOR OF PHOTOGRAPHY. -->
+      <div class="credits__row">
+        <dt class="credits__role">Writer, Producer,<br>Director, Editor</dt>
+        <dd class="credits__name">Phillip Cai</dd>
+      </div>
+    </dl>
+
+  </main>
+
+  <footer class="site-footer">
+    &copy; 2026 Phillip Cai
+  </footer>
+
+</div>
+</body>
+</html>

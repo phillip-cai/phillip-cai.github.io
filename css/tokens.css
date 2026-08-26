@@ -1,0 +1,90 @@
+/* ==========================================================================
+   tokens.css — every value you'd want to tweak lives here.
+   Change these first. base.css and layout.css only reference them.
+   ========================================================================== */
+
+:root{
+
+  /* ---- color ------------------------------------------------------------
+     Deliberately achromatic. The only color on the page should be the
+     film stills. If you add an accent, add it here and nowhere else.
+
+     Dark. Not pure #000/#fff in either direction: full white on full black
+     haloes badly at these type sizes, and the stills have real black in
+     them, so a near-black page lets the frames sit on it without a seam. */
+  --ink:        #ededed;   /* body text, wordmark */
+  --paper:      #0d0d0d;   /* background */
+  --muted:      #a0a0a0;   /* labels, nav, credits */
+  --rule:       #2e2e2e;   /* hairlines */
+  --frame-bg:   #1a1a1a;   /* video placeholder before load */
+
+  /* ---- type -------------------------------------------------------------
+     Two roles: a grotesque for anything set in caps (wordmark, nav,
+     labels, titles), a serif for prose (loglines, bio). */
+  --font-display: 'Archivo', Helvetica, Arial, sans-serif;
+  --font-body:    'Newsreader', Georgia, serif;
+
+  --size-wordmark: clamp(1.5rem, 1.1rem + 2.2vw, 2.75rem);
+  --size-body:     clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+  --size-lead:     1.125rem;   /* bio */
+  --size-logline:  1.0625rem;
+  --size-title:    1.125rem;   /* film titles in a list */
+  --size-film-title: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+                               /* film title on its own page — subordinate
+                                  to the wordmark, dominant on the page */
+  --size-label:    0.6875rem;  /* nav, tags, social */
+  --size-mail:     1.125rem;   /* the email address. Bigger than the social
+                                  row because it's the page's one action —
+                                  but at prose scale, not display scale */
+  --size-eyebrow:  0.625rem;   /* section labels, footer */
+  --size-credits:  0.75rem;
+
+  /* letter-spacing for uppercase settings */
+  --track-wordmark: 0.24em;
+  --track-label:    0.18em;
+  --track-eyebrow:  0.24em;
+
+  /* ---- space ------------------------------------------------------------ */
+  --gutter:      clamp(1.25rem, 5vw, 4rem);   /* page side padding */
+  --stack:       clamp(4rem, 11vh, 8rem);     /* gap between sections */
+  --page-top:    clamp(2rem, 4vh, 3rem);      /* nav rule to first content.
+                                                 Deliberately smaller than
+                                                 --stack: a gap that reads as
+                                                 breathing room between
+                                                 sections reads as a missing
+                                                 element at the top */
+  --measure:     960px;                       /* max content width */
+  --measure-text: 72ch;                       /* max prose width. 45–75
+                                                 characters is the readable
+                                                 band; sitting near the top
+                                                 of it fills more of the page
+                                                 without becoming a chore */
+  --credits-gap:  clamp(1.5rem, 4vw, 3.5rem); /* credits role to name */
+  --credits-lift: 0.1875rem;                  /* 3px. Optical only. Roles are
+                                                 small caps and names a much
+                                                 larger serif, so on a shared
+                                                 baseline the name's capitals
+                                                 stand ~5px taller and the
+                                                 label reads as sitting low.
+                                                 This lifts the role by half
+                                                 that, centring the two cap
+                                                 bands against each other.
+                                                 Constant because --size-label
+                                                 and --size-logline are both
+                                                 fixed rem; if either becomes
+                                                 fluid, this has to follow */
+  --poster-w:    400px;                       /* film poster — sized as an
+                                                 object, not a hero */
+  --stills-gap:  0.75rem;                     /* between stacked stills */
+  --film-gap:    clamp(1.5rem, 4vw, 3rem);    /* poster to its text */
+  --film-text-min: 20rem;                     /* text column stops shrinking
+                                                 here and drops below the
+                                                 poster instead */
+  --ratio-film:  1920 / 1012;                 /* the film's native 1.90:1 —
+                                                 player and stills share it,
+                                                 so nothing letterboxes */
+
+  /* ---- motion ----------------------------------------------------------- */
+  --ease: .2s ease;
+  --dim:  0.86;   /* image opacity on hover — the only hover cue on a poster */
+}

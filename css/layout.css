@@ -1,0 +1,364 @@
+/* ==========================================================================
+   layout.css — one block per region, in document order.
+   Shared across index.html, about.html, contact.html.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Header — identical on every page
+   -------------------------------------------------------------------------- */
+
+.site-header{
+  padding:clamp(3rem, 9vh, 6rem) 0 0;
+  text-align:center;
+}
+
+.wordmark{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--size-wordmark);
+  letter-spacing:var(--track-wordmark);
+  text-indent:var(--track-wordmark);
+  text-transform:uppercase;
+  line-height:1.1;
+  margin:0;
+}
+
+.wordmark a{ text-decoration:none; }
+
+.role{
+  font-size:var(--size-label);
+  font-weight:400;
+  color:var(--muted);
+  margin:1.1rem 0 0;
+  letter-spacing:0.2em;
+  text-indent:0.2em;
+}
+
+.site-nav{
+  margin-top:clamp(2rem, 5vh, 3.25rem);
+  padding-bottom:1.25rem;
+  border-bottom:1px solid var(--rule);
+  display:flex;
+  justify-content:center;
+  gap:clamp(1.5rem, 4vw, 2.75rem);
+}
+
+/* Current page. Set with aria-current="page" in the markup, so the
+   styling and the accessibility signal can't drift apart. */
+.site-nav a[aria-current="page"]{
+  color:var(--ink);
+}
+
+
+/* --------------------------------------------------------------------------
+   Page body
+   -------------------------------------------------------------------------- */
+
+.page{ padding:var(--page-top) 0 0; }
+
+
+/* --------------------------------------------------------------------------
+   Film entries (work page)
+   -------------------------------------------------------------------------- */
+
+/* Poster left, text right. flex-wrap rather than a media query: when the
+   poster and a --film-text-min text column no longer fit side by side, the
+   text drops underneath on its own. No breakpoint to keep in sync. */
+.film{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:flex-start;
+  gap:var(--film-gap);
+}
+
+.film + .film{ margin-top:clamp(3.5rem, 8vh, 5.5rem); }
+
+.film__poster-link{
+  flex:0 1 var(--poster-w);
+  max-width:100%;
+}
+
+.film__text{ flex:1 1 var(--film-text-min); }
+
+/* The meta block carries top margin when it sits under a poster in the
+   one-column case; alongside one it should start level with the artwork. */
+.film__text > .film__meta:first-child{ margin-top:0; }
+
+/* Box holding the Vimeo embed. Set to the film's native ratio, not 16:9,
+   so the player matches the stills below it and adds no letterbox of its
+   own. --frame-bg shows while the player loads. */
+.film__frame{
+  position:relative;
+  aspect-ratio:var(--ratio-film);
+  background:var(--frame-bg);
+  overflow:hidden;
+}
+
+.film__frame iframe,
+.film__frame img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  border:0;
+  object-fit:cover;
+}
+
+/* Poster — the film's entry on the work page, and a link into its page.
+   Deliberately narrow: a 2:3 image at full measure is 1440px tall, so the
+   visitor would scroll past a poster to reach anything else. The work page
+   carries nothing but 2:3 posters and the film page carries nothing but
+   1.90:1 stills, so no two image shapes ever compete in one column. */
+.film__poster{
+  max-width:var(--poster-w);
+  transition:opacity var(--ease);
+}
+
+a:hover > .film__poster{ opacity:var(--dim); }
+
+.film__title a{ text-decoration:none; }
+
+.film__meta{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:0.75rem 1.25rem;
+  margin-top:1.5rem;
+}
+
+.film__title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--size-title);
+  letter-spacing:0.02em;
+  margin:0;
+}
+
+.film__tag{
+  font-family:var(--font-display);
+  font-size:var(--size-label);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.film__logline{
+  margin:0.85rem 0 0;
+  max-width:52ch;
+  font-size:var(--size-logline);
+  line-height:1.65;
+}
+
+/* Each credit is one flex item that can't break internally, so a role never
+   gets separated from the name it belongs to. Lines break between credits,
+   never inside one. The separator hangs off the end of each item so a
+   wrapped line never opens with a stray middot. */
+/* Credits — one per line, role and name in two columns.
+
+   The run-on billing block this replaces set roles and names in identical
+   type, so "Production Sound Johnny Caicedo" read as one four-word blob.
+   The fix isn't the line break, it's the contrast: roles take the same
+   small tracked uppercase the site uses for every other label, names take
+   the serif at reading size. A job title can't be mistaken for a person. */
+.credits{
+  margin:0;
+  padding-top:1.75rem;
+  border-top:1px solid var(--rule);
+
+  /* max-content sizes the role column to the longest label rather than to
+     a magic number, so adding SUPERVISING SOUND EDITOR later widens it
+     instead of wrapping it. minmax(0, …) lets it shrink and wrap on a
+     phone rather than pushing the page sideways. */
+  display:grid;
+  grid-template-columns:minmax(0, max-content) minmax(0, 1fr);
+  align-items:baseline;
+  column-gap:var(--credits-gap);
+
+  /* No row-gap: the space belongs to the start of each credit, not between
+     grid rows. That way a role carrying two names keeps them tight enough to
+     read as one credit, while the credits themselves stay apart. */
+  row-gap:0;
+}
+
+.credits__row + .credits__row > .credits__role,
+.credits__row + .credits__row > .credits__name:first-of-type{
+  margin-top:1.1rem;
+}
+
+/* The rows exist to group each dt/dd pair semantically; display:contents
+   lets their dt and dd become grid items so the columns line up. */
+.credits__row{ display:contents; }
+
+/* Stated on the items, not left to align-items on .credits. align-self:auto
+   has to resolve through a display:contents row, which is exactly the corner
+   browsers have disagreed on; saying it here removes the question. */
+.credits__role,
+.credits__name{ align-self:baseline; }
+
+/* Both columns are pinned explicitly rather than left to auto-placement, so a
+   role carrying two names puts the second one under the first instead of
+   knocking it into the label column. */
+/* --credits-lift is an optical correction, so it's applied with relative
+   positioning: it moves the glyphs without moving the row the grid measured. */
+.credits__role{
+  grid-column:1;
+  position:relative;
+  top:calc(-1 * var(--credits-lift));
+  font-family:var(--font-display);
+  font-size:var(--size-label);
+  letter-spacing:var(--track-label);
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* nowrap sets the priority under space pressure: a person's name holds its
+   line and the role wraps instead. A role reads fine over two lines; a name
+   broken across them reads as two people. Watch this if you ever credit a
+   name longer than the widest role label. */
+.credits__name{
+  grid-column:2;
+  margin:0;
+  font-size:var(--size-logline);
+  white-space:nowrap;
+}
+
+/* Stills. Stacked full-measure with a tight gap so they read as one
+   filmstrip rather than separate sections. The files are cropped to
+   the film's native 1.90:1 — no baked-in letterbox, so the page does the
+   letterboxing and the frames sit clean on white. */
+.film__stills{
+  margin-top:clamp(2rem, 5vh, 3rem);
+  display:flex;
+  flex-direction:column;
+  gap:var(--stills-gap);
+}
+
+/* Variant: no footage yet. A rule stands in for the frame, so the
+   absence reads as a choice rather than a broken embed. */
+.film--text{
+  border-top:1px solid var(--rule);
+  padding-top:1.75rem;
+}
+
+/* With no poster the text has the whole measure, so the logline doesn't
+   need the 52ch column it would need beside one — it sits on a single
+   line. Same caveat as the film page: keep it under ~110 characters. */
+.film--text .film__logline{
+  max-width:none;
+  text-wrap:pretty;
+}
+
+
+/* --------------------------------------------------------------------------
+   Film page (family-style.html)
+
+   One film, its own page. Everything here is 1.90:1 or text — the poster
+   stays on the work page so the two shapes never share a column.
+   -------------------------------------------------------------------------- */
+
+/* .film__tag is a <span> inside .film__meta on the work page and a <p> of
+   its own here, so it has to carry no margin and take spacing from context. */
+.film-page__title + .film__tag{
+  display:block;
+  margin:0.9rem 0 0;
+}
+
+.film-page__title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--size-film-title);
+  letter-spacing:0.02em;
+  line-height:1.15;
+  margin:0;
+}
+
+/* The player. Sits above the logline — someone who came here to watch
+   shouldn't have to read a paragraph first. */
+.film-page__player{ margin-top:1.75rem; }
+
+/* Logline under the player. Runs the full measure rather than a 52ch
+   column: a logline is one sentence, so at this size it lands on a single
+   line that ends where the player ends, instead of breaking mid-air in the
+   middle of the page. Keep loglines under ~110 characters or this wraps to
+   a second line long enough to be a chore to read. */
+.film-page__logline{
+  margin-top:1.6rem;
+  max-width:none;
+  text-wrap:pretty;
+}
+
+/* The credits sit after the stills. The rule and the gap stop them reading
+   as a caption for the still directly above. */
+.film-page__credits{ margin-top:clamp(2.5rem, 6vh, 4rem); }
+
+
+/* --------------------------------------------------------------------------
+   About page
+   -------------------------------------------------------------------------- */
+
+.bio{
+  max-width:var(--measure-text);
+  font-size:var(--size-lead);
+  line-height:1.7;
+}
+
+/* Keeps the paragraph from ending on a two-word runt line. */
+.bio p{ text-wrap:pretty; }
+
+.bio p{ margin:0 0 1.25rem; }
+.bio p:last-child{ margin-bottom:0; }
+
+.portrait{
+  max-width:340px;
+  margin:0 0 2.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   Contact page
+   -------------------------------------------------------------------------- */
+
+/* The address stays visible rather than hiding behind an "Email" label —
+   people copy it into their own client instead of firing a mailto. It sits
+   above the social row in scale, not in a different league from it. */
+.contact__mail{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-size:var(--size-mail);
+  letter-spacing:0.01em;
+  text-decoration:none;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:0.15rem;
+  transition:border-color var(--ease);
+}
+
+.contact__mail:hover{ border-color:var(--ink); }
+
+.contact__note{
+  max-width:46ch;
+  margin:2rem 0 0;
+  color:var(--muted);
+}
+
+.contact__elsewhere{
+  margin-top:2.5rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:1.5rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   Footer — identical on every page
+   -------------------------------------------------------------------------- */
+
+.site-footer{
+  margin-top:var(--stack);
+  padding:2rem 0 3rem;
+  border-top:1px solid var(--rule);
+  font-family:var(--font-display);
+  font-size:var(--size-eyebrow);
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
