@@ -273,8 +273,18 @@ a:hover > .film__poster{ opacity:var(--dim); }
 }
 
 /* The player. Sits above the logline — someone who came here to watch
-   shouldn't have to read a paragraph first. */
-.film-page__player{ margin-top:1.75rem; }
+   shouldn't have to read a paragraph first.
+
+   Overrides .film__frame's ratio: this box has to match the uploaded file,
+   not the picture inside it. At --ratio-film the player had 1.90:1 to work
+   with and a 16:9 file to place, so it pillarboxed and filled the gap with
+   its own background — white bars down both edges. At --ratio-source the
+   file fills the frame exactly and only the film's own black letterbox
+   shows, which is invisible against --paper. */
+.film-page__player{
+  margin-top:1.75rem;
+  aspect-ratio:var(--ratio-source);
+}
 
 /* Logline under the player. Runs the full measure rather than a 52ch
    column: a logline is one sentence, so at this size it lands on a single

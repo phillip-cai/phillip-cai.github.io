@@ -81,8 +81,21 @@
                                                  here and drops below the
                                                  poster instead */
   --ratio-film:  1920 / 1012;                 /* the film's native 1.90:1 —
-                                                 player and stills share it,
-                                                 so nothing letterboxes */
+                                                 what the stills are cropped
+                                                 to, and the shape the picture
+                                                 actually is */
+  --ratio-source: 16 / 9;                     /* the shape of the FILE on
+                                                 Vimeo, which is not the same
+                                                 thing: it's a 16:9 container
+                                                 with the 1.90:1 picture
+                                                 letterboxed inside it. The
+                                                 player fits the file, not the
+                                                 picture, so the frame has to
+                                                 match this or the player
+                                                 pillarboxes and paints its own
+                                                 background into the gap.
+                                                 Re-upload at true 1.90:1 and
+                                                 this becomes --ratio-film */
 
   /* ---- motion ----------------------------------------------------------- */
   --ease: .2s ease;
