@@ -33,11 +33,7 @@
                                /* film title on its own page — subordinate
                                   to the wordmark, dominant on the page */
   --size-label:    0.6875rem;  /* nav, tags, social */
-  --size-mail:     1.125rem;   /* the email address. Bigger than the social
-                                  row because it's the page's one action —
-                                  but at prose scale, not display scale */
   --size-eyebrow:  0.625rem;   /* section labels, footer */
-  --size-credits:  0.75rem;
 
   /* letter-spacing for uppercase settings */
   --track-wordmark: 0.24em;
@@ -73,10 +69,41 @@
                                                  and --size-logline are both
                                                  fixed rem; if either becomes
                                                  fluid, this has to follow */
-  --poster-w:    400px;                       /* film poster — sized as an
+  --poster-w:    400px;                       /* film poster -- sized as an
                                                  object, not a hero */
   --stills-gap:  0.75rem;                     /* between stacked stills */
   --film-gap:    clamp(1.5rem, 4vw, 3rem);    /* poster to its text */
+  --contact-slot: 3.5rem;                     /* 56px. The hit area, not the
+                                                 mark. Invisible on the page;
+                                                 it exists so the target stays
+                                                 comfortably over the 44px a
+                                                 thumb needs, whatever
+                                                 --social-mark is set to */
+  --social-mark: 2.125rem;                    /* 34px. Sized against the
+                                                 wordmark, not against the nav:
+                                                 the marks are the only content
+                                                 on this page, so they sit just
+                                                 under the 44px name rather than
+                                                 down with the labels */
+  --mark-scale-mail: 0.93;                    /* the envelope. Same job as
+                                                 --mark-dim-word, opposite
+                                                 lever: it is a chunkier solid
+                                                 than the three brand marks and
+                                                 measured 14% more ink at the
+                                                 same box. Scaled back rather
+                                                 than dimmed -- a slightly
+                                                 smaller solid reads as sized,
+                                                 a dimmed one reads as disabled */
+  --mark-dim-word: 0.75;                      /* IMDb only, and an optical
+                                                 correction rather than a style.
+                                                 Instagram and Vimeo are compact
+                                                 solids and measure within 3% of
+                                                 each other untouched; a solid
+                                                 wordmark is denser than either,
+                                                 and this is what brings it back
+                                                 level. Retune it against the
+                                                 others if --social-mark moves */
+  --contact-gap: 1.75rem;                     /* square to square */
   --film-text-min: 20rem;                     /* text column stops shrinking
                                                  here and drops below the
                                                  poster instead */

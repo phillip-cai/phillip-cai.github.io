@@ -328,33 +328,79 @@ a:hover > .film__poster{ opacity:var(--dim); }
    Contact page
    -------------------------------------------------------------------------- */
 
-/* The address stays visible rather than hiding behind an "Email" label —
-   people copy it into their own client instead of firing a mailto. It sits
-   above the social row in scale, not in a different league from it. */
-.contact__mail{
-  display:inline-block;
-  font-family:var(--font-display);
-  font-size:var(--size-mail);
-  letter-spacing:0.01em;
-  text-decoration:none;
-  border-bottom:1px solid var(--rule);
-  padding-bottom:0.15rem;
-  transition:border-color var(--ease);
+/* Centred, unlike Work and About. Those pages carry enough content to hold a
+   left margin; this one is a single row, and left-aligning it under a centred
+   header gives the page two competing axes and a large empty right side. */
+.contact{ text-align:center; }
+
+/* Four marks, one line, none of them labelled -- so every link carries an
+   aria-label in the markup. That is the only name a screen reader gets;
+   without it these are four blank links. */
+.contact__list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:var(--contact-gap);
 }
 
-.contact__mail:hover{ border-color:var(--ink); }
+/* Each link is a --contact-slot square with its mark centred in it. The square
+   never shows; it exists so the target clears the ~44px a thumb needs whatever
+   --social-mark is set to. */
+.contact__link{
+  width:var(--contact-slot);
+  height:var(--contact-slot);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  /* Three of these wrap an <svg>, which takes no underline, so the missing
+     reset would show up only on a mark that is really text. */
+  text-decoration:none;
+  color:var(--muted);
+  transition:color var(--ease);
+}
+
+.contact__link:hover{ color:var(--ink); }
+
+/* Every mark is a filled path in currentColor, so the hover above is one rule
+   for all four rather than one per mark. All solid by design: an outline glyph
+   beside solid ones reads lighter at the same size no matter how it is tuned,
+   which is what put the row out of balance while these were hand-drawn. */
+.contact__list svg{
+  width:var(--social-mark);
+  height:var(--social-mark);
+  flex:none;
+}
+
+/* Selector carries svg. for the same specificity reason as the wordmark. */
+.contact__list svg.contact__pictograph{
+  width:calc(var(--social-mark) * var(--mark-scale-mail));
+  height:calc(var(--social-mark) * var(--mark-scale-mail));
+}
+
+/* IMDb has never had a pictograph -- its mark is a lettermark, so it is sized
+   by height and left to find its own width. There is no setting where four
+   letters occupy a square.
+
+   These are the real letterforms: IMDb's is a heavy condensed grotesque and
+   Archivo at weight 600 was never going to pass for it. Their official lockup
+   is the wordmark inside a rounded frame, shipped as one compound path, so
+   dropping its first sub-path leaves the letters alone.
+
+   Selector carries svg. so it outweighs the square sizing above. */
+.contact__list svg.contact__wordmark{
+  width:auto;
+  height:calc(var(--social-mark) * 0.55);
+}
+
+/* Applied with opacity rather than a dimmer colour so the single hover rule
+   still works: the correction rides on top of whatever colour the link is,
+   instead of needing its own hover value. */
+.contact__link--word{ opacity:var(--mark-dim-word); }
 
 .contact__note{
   max-width:46ch;
-  margin:2rem 0 0;
+  margin:2rem auto 0;
   color:var(--muted);
-}
-
-.contact__elsewhere{
-  margin-top:2.5rem;
-  display:flex;
-  flex-wrap:wrap;
-  gap:1.5rem;
 }
 
 
