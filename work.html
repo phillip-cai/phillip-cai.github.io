@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<!-- /work exists so the URL resolves instead of 404ing — it's the obvious thing
+     to guess for a portfolio, and the nav item is labelled Work.
+
+     It redirects rather than duplicating the listing. The work listing IS the
+     homepage, so a real page here would mean a second copy of index.html's
+     markup kept in sync by hand, plus one page reachable at two addresses.
+
+     A meta refresh because GitHub Pages serves static files and gives us no way
+     to send a 301. At 0 seconds Google treats this as equivalent to one, and the
+     canonical below removes any remaining doubt about which URL counts. Not in
+     sitemap.xml, deliberately. -->
+<meta http-equiv="refresh" content="0; url=/">
+<link rel="canonical" href="https://www.phillipcai.com/">
+
+<title>Work — Phillip Cai</title>
+<meta name="description" content="Films written and directed by Phillip Cai.">
+</head>
+
+<!-- Only ever seen if the refresh is blocked, so it carries its own colours
+     rather than pulling the stylesheets: no reason to make a page that leaves
+     immediately fetch three files first. -->
+<body style="margin:0;background:#0d0d0d;color:#ededed;
+             font:300 1.0625rem/1.6 Georgia,serif;padding:3rem 1.5rem">
+  <p style="margin:0">
+    <a href="/" style="color:#ededed">Phillip Cai — work</a>
+  </p>
+</body>
+</html>

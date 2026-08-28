@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Extensionless. GitHub Pages serves both /about and /about.html with a 200,
+     so every page has two working addresses and only the canonical tag on the
+     page decides which one counts. This file has to agree with those tags or it
+     argues against them. /tech/ is deliberately absent: it carries a noindex. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.phillipcai.com/</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://www.phillipcai.com/about.html</loc>
+    <loc>https://www.phillipcai.com/about</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://www.phillipcai.com/contact.html</loc>
+    <loc>https://www.phillipcai.com/contact</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
   <url>
-    <loc>https://www.phillipcai.com/family-style.html</loc>
+    <loc>https://www.phillipcai.com/family-style</loc>
     <lastmod>2026-08-28</lastmod>
   </url>
 </urlset>
