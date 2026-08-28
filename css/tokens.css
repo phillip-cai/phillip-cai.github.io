@@ -18,6 +18,29 @@
   --rule:       #2e2e2e;   /* hairlines */
   --frame-bg:   #1a1a1a;   /* video placeholder before load */
 
+  /* Inverted palette, used by the tech page. Same five roles, same names,
+     opposite values -- one design system serving two audiences rather than two
+     designs. Set on <html> rather than <body> so color-scheme travels with it
+     and the browser's own chrome (scrollbars, focus rings, form controls)
+     flips too; on <body> the root would stay dark and the scrollbar with it.
+
+     Pure #fff/#000 here, unlike the dark palette above. The reason that one
+     backs off the extremes is haloing, which is a light-on-dark artefact --
+     black on white doesn't have it. Soften --ink to #111 if you want it less
+     stark on a bright screen. */
+
+}
+
+.theme-light{
+  --ink:        #000000;
+  --paper:      #ffffff;
+  --muted:      #666666;   /* 5.7:1 on white -- passes AA for body text */
+  --rule:       #dcdcdc;
+  --frame-bg:   #eeeeee;
+  color-scheme: light;
+}
+
+:root{
   /* ---- type -------------------------------------------------------------
      Two roles: a grotesque for anything set in caps (wordmark, nav,
      labels, titles), a serif for prose (loglines, bio). */
@@ -33,12 +56,20 @@
                                /* film title on its own page — subordinate
                                   to the wordmark, dominant on the page */
   --size-label:    0.6875rem;  /* nav, tags, social */
-  --size-eyebrow:  0.625rem;   /* section labels, footer */
+  --size-footer:   0.625rem;   /* the footer line, the smallest type
+                                  on the site */
+  --size-section:  1.25rem;    /* section headings on /tech. Above the 1.125rem
+                                  company names they sit over, so the hierarchy
+                                  reads; below the wordmark, so they don't
+                                  compete with it */
 
   /* letter-spacing for uppercase settings */
   --track-wordmark: 0.24em;
   --track-label:    0.18em;
-  --track-eyebrow:  0.24em;
+  --track-footer:   0.16em;
+  --track-section:  0.14em;   /* less than --track-label: tracking is there to
+                                 open up small caps, and the need falls away as
+                                 the type grows */
 
   /* ---- space ------------------------------------------------------------ */
   --gutter:      clamp(1.25rem, 5vw, 4rem);   /* page side padding */
@@ -104,6 +135,46 @@
                                                  level. Retune it against the
                                                  others if --social-mark moves */
   --contact-gap: 1.75rem;                     /* square to square */
+  --job-gap:     clamp(2rem, 5vh, 2.75rem);   /* between roles on /tech */
+  --section-gap: clamp(2.5rem, 6vh, 3.25rem); /* section to divider, and divider
+                                                 to the next section. Equal on
+                                                 both sides so the rule sits in
+                                                 the middle of the gap rather
+                                                 than belonging to one side */
+  --job-logo:    2rem;                        /* 32px. Sized against the 18px
+                                                 company name beside it, not the
+                                                 11px labels: it should read as
+                                                 belonging to the heading */
+  --job-unit-gap: 0.6rem;                     /* company name to its business
+                                                 unit. Deliberately about half
+                                                 the 1.25rem gap between items
+                                                 in .job__head, so "Oracle" and
+                                                 "Oracle Cloud Infrastructure"
+                                                 bind to each other before
+                                                 either binds to the role */
+  --job-logo-radius: 6px;                     /* these are square avatars, so a
+                                                 corner is needed or they read as
+                                                 photographs rather than marks */
+  --spec-gap:    clamp(1.5rem, 4vw, 3rem);    /* label to value on /tech */
+  --spec-row:    1.1rem;                      /* row to row in a spec list */
+  --link-mark:   0.9375rem;                   /* 15px. The marks in the /tech
+                                                 link row, sized off the cap
+                                                 height of the 11px tracked
+                                                 label beside them rather than
+                                                 off its em, which is what makes
+                                                 the two read level */
+  --link-bleed:  0.85;                        /* An optical correction for a mark
+                                                 drawn flush to its own viewBox.
+                                                 LinkedIn's square touches all
+                                                 four edges; the envelope and the
+                                                 document are Material glyphs and
+                                                 carry ~2 units of padding inside
+                                                 theirs. Rendered at one size the
+                                                 square measured 48% more ink, so
+                                                 it is scaled back to sit level */
+  --link-gap:    0.5rem;                      /* mark to its own word. Under the
+                                                 gap between links, so each pair
+                                                 binds before the row does */
   --film-text-min: 20rem;                     /* text column stops shrinking
                                                  here and drops below the
                                                  poster instead */

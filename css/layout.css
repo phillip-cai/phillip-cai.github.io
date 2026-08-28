@@ -405,6 +405,219 @@ a:hover > .film__poster{ opacity:var(--dim); }
 
 
 /* --------------------------------------------------------------------------
+   Tech page (tech/index.html)
+
+   Reached only by handing out the URL. Shares the type and colour of the film
+   pages because there is one person behind both and no reason to design twice;
+   kept apart by routing, not by looking different. Nothing on the film side
+   links here, and this page carries no nav.
+   -------------------------------------------------------------------------- */
+
+/* The film pages get their header rule from .site-nav's border. There is no nav
+   here, so the header draws its own. */
+.site-header--plain{
+  padding-bottom:1.25rem;
+  border-bottom:1px solid var(--rule);
+}
+
+.tech__links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.75rem 1.75rem;
+  margin:0;
+}
+
+/* Each link is its mark plus its word, so the whole pair is one target rather
+   than a 15px glyph next to a separate one. */
+.tech__links a{
+  display:inline-flex;
+  align-items:center;
+  gap:var(--link-gap);
+}
+
+/* flex:none stops a long label squeezing the glyph out of shape when the row
+   wraps on a phone. */
+.tech__links svg{
+  width:var(--link-mark);
+  height:var(--link-mark);
+  flex:none;
+}
+
+/* For any mark that runs to the edge of its own viewBox rather than sitting
+   inside padding. Scaled, not dimmed: shrinking a solid reads as sized, while
+   a lightened one reads as disabled. */
+.tech__links svg.mark--bleed{
+  width:calc(var(--link-mark) * var(--link-bleed));
+  height:calc(var(--link-mark) * var(--link-bleed));
+}
+
+/* Sections are divided by a rule rather than by space alone: with four jobs of
+   very different lengths, space alone stops reading as a boundary. Same idiom as
+   the credits block and .film--text on the film pages. */
+.tech__section{ margin-top:2.75rem; }
+
+.tech__section + .tech__section{
+  margin-top:var(--section-gap);
+  padding-top:var(--section-gap);
+  border-top:1px solid var(--rule);
+}
+
+/* No rule above the first: the header already draws one directly above the link
+   row, and a second hairline a few lines below reads as a mistake.
+
+   Set in --ink, not the --muted the smaller labels use. A heading that names a
+   section should outrank the job titles beneath it, and at this size muted grey
+   would leave it quieter than the company names it sits over. */
+.section-title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--size-section);
+  letter-spacing:var(--track-section);
+  text-transform:uppercase;
+  color:var(--ink);
+  margin:0 0 1.6rem;
+}
+
+.job + .job{ margin-top:var(--job-gap); }
+
+/* Company, role and dates on one line while there is room, stacking in that
+   order when there isn't. baseline rather than centre so the three different
+   type sizes sit on a common line. */
+.job__head{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:baseline;
+  gap:0.35rem 1.25rem;
+  margin-bottom:0.9rem;
+}
+
+/* Company avatars, as supplied: 400px squares, three of them full-bleed colour
+   and Meta's a glyph on white. Left in colour rather than forced monochrome --
+   these are the companies' marks, not site furniture.
+
+   The hairline border is what makes them a set. Round a white tile on a white
+   page and it disappears; the border gives Meta the same silhouette as the three
+   coloured squares, at the cost of being nearly invisible on those three. That
+   trade is the right way round.
+
+   align-self:center because .job__head aligns on the baseline, which for an
+   image means its bottom edge -- it would hang below the company name. */
+.job__logo{
+  flex:none;
+  align-self:center;
+  width:var(--job-logo);
+  height:var(--job-logo);
+  border-radius:var(--job-logo-radius);
+  border:1px solid var(--rule);
+}
+
+.job__co{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:var(--size-title);
+  letter-spacing:0.02em;
+  margin:0;
+}
+
+/* The business unit under a parent company — "Oracle Cloud Infrastructure"
+   under Oracle. Set down to label size so the company still reads as the
+   heading and this reads as a qualifier on it.
+
+   The gap is a margin, not the space character that used to sit between them in
+   the markup: one space at 18px is about 5px, while the flex gap to the role
+   beside it is 20px, so the two read as jammed together and then flung apart. */
+.job__unit{
+  margin-left:var(--job-unit-gap);
+  font-weight:400;
+  font-size:var(--size-label);
+  letter-spacing:var(--track-label);
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.job__role,
+.job__dates{
+  font-family:var(--font-display);
+  font-size:var(--size-label);
+  letter-spacing:var(--track-label);
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0;
+}
+
+/* Dates pushed to the far edge on a wide screen; margin-left:auto rather than
+   justify-content so it collapses harmlessly when the row wraps on a phone. */
+.job__dates{ margin-left:auto; }
+
+/* list-style:none with a hanging bullet drawn by ::before, because the browser
+   default marker sits at a size and colour we don't control. */
+.job__points{
+  list-style:none;
+  margin:0;
+  padding:0;
+  max-width:var(--measure-text);
+  font-size:var(--size-logline);
+  line-height:1.65;
+}
+
+.job__points li{
+  position:relative;
+  padding-left:1.15rem;
+}
+
+.job__points li + li{ margin-top:0.7rem; }
+
+.job__points li::before{
+  content:"";
+  position:absolute;
+  left:0;
+  /* 0.82em down the line box puts the dot on the x-height rather than the cap
+     line, which is where the eye expects it next to lowercase text. */
+  top:0.82em;
+  width:4px;
+  height:1px;
+  background:var(--muted);
+}
+
+/* Label/value pairs — skills, education. Same two-column idea as the film
+   credits, but the value wraps: a tools list is a paragraph, where a person's
+   name is not. */
+.spec{
+  margin:0;
+  display:grid;
+  grid-template-columns:minmax(0, max-content) minmax(0, 1fr);
+  column-gap:var(--spec-gap);
+  row-gap:0;
+}
+
+.spec__row{ display:contents; }
+
+.spec__row + .spec__row > .spec__key,
+.spec__row + .spec__row > .spec__val{ margin-top:var(--spec-row); }
+
+.spec__key,
+.spec__val{ align-self:baseline; }
+
+.spec__key{
+  grid-column:1;
+  position:relative;
+  top:calc(-1 * var(--credits-lift));
+  font-family:var(--font-display);
+  font-size:var(--size-label);
+  letter-spacing:var(--track-label);
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.spec__val{
+  grid-column:2;
+  margin:0;
+  font-size:var(--size-logline);
+  line-height:1.6;
+}
+
+
+/* --------------------------------------------------------------------------
    Footer — identical on every page
    -------------------------------------------------------------------------- */
 
@@ -413,8 +626,8 @@ a:hover > .film__poster{ opacity:var(--dim); }
   padding:2rem 0 3rem;
   border-top:1px solid var(--rule);
   font-family:var(--font-display);
-  font-size:var(--size-eyebrow);
-  letter-spacing:0.16em;
+  font-size:var(--size-footer);
+  letter-spacing:var(--track-footer);
   text-transform:uppercase;
   color:var(--muted);
 }

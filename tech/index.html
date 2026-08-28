@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- theme-light inverts the five colour tokens; see tokens.css. -->
+<html lang="en" class="theme-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Kept out of search results deliberately. This page is handed out, not
+     found: phillipc.ai forwards here, and nothing on the film side of the site
+     links to it.
+
+     noindex and not a robots.txt Disallow, because a Disallow stops the crawl
+     and the noindex then never gets read — the URL can still surface as a bare
+     link, and robots.txt would publish the path besides. The one thing that
+     does need a Disallow is the PDF: a PDF can't carry a meta tag, and the only
+     other lever is an X-Robots-Tag header, which GitHub Pages won't let us set. -->
+<meta name="robots" content="noindex, nofollow">
+
+<title>Phillip Cai — Software Engineer</title>
+<meta name="description" content="Phillip Cai is a senior software engineer working on distributed systems, entity resolution and knowledge graphs.">
+
+<meta property="og:title" content="Phillip Cai — Software Engineer">
+<meta property="og:description" content="Distributed systems, entity resolution, knowledge graphs.">
+<meta property="og:type" content="profile">
+<meta property="og:url" content="https://www.phillipcai.com/tech/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+</head>
+
+<body>
+<div class="wrap">
+
+  <!-- No nav. The film pages carry one; this page is reached directly and has
+       nowhere of its own to go. Deliberately no link back to the film site
+       either — add one here if you ever want tech readers pointed at it, but
+       it should stay a decision rather than a default. -->
+  <header class="site-header site-header--plain">
+    <h1 class="wordmark">Phillip Cai</h1>
+    <p class="role u-caps">Software Engineer</p>
+  </header>
+
+  <main class="page tech">
+
+    <!-- No phone number. It is in the PDF, which is public, but a phone number
+         sitting in HTML is scraped within days. -->
+    <!-- Marks inline and in currentColor, so .link-quiet's muted-to-ink hover
+         moves the glyph and the word together.
+
+         LinkedIn is the real mark: its rounded square and its "in" are two
+         subpaths of one <path> under fill-rule:evenodd, so the letters are
+         knocked out of the solid rather than drawn on top of it. That is what
+         lets it take currentColor and work on either background.
+
+         The envelope and the document are generic pictographs -- there is no
+         official logo for "email" or "a PDF of my resume" -- drawn solid to
+         match LinkedIn's construction rather than sitting beside it as
+         outlines. aria-hidden on all three: the link text already names them. -->
+    <p class="tech__links">
+      <a class="link-quiet" href="mailto:me@phillipc.ai">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>me@phillipc.ai</a>
+
+      <a class="link-quiet" href="https://www.linkedin.com/in/phillipcai" rel="noopener">
+        <svg class="mark--bleed" viewBox="0 0 72 72" fill="currentColor" fill-rule="evenodd"
+             aria-hidden="true" focusable="false">
+          <path d="M8,72 L64,72 C68.418278,72 72,68.418278 72,64 L72,8 C72,3.581722 68.418278,-8.11624501e-16 64,0 L8,0 C3.581722,8.11624501e-16 -5.41083001e-16,3.581722 0,8 L0,64 C5.41083001e-16,68.418278 3.581722,72 8,72 Z M62,62 L51.315625,62 L51.315625,43.8021149 C51.315625,38.8127542 49.4197917,36.0245323 45.4707031,36.0245323 C41.1746094,36.0245323 38.9300781,38.9261103 38.9300781,43.8021149 L38.9300781,62 L28.6333333,62 L28.6333333,27.3333333 L38.9300781,27.3333333 L38.9300781,32.0029283 C38.9300781,32.0029283 42.0260417,26.2742151 49.3825521,26.2742151 C56.7356771,26.2742151 62,30.7644705 62,40.051212 L62,62 Z M16.349349,22.7940133 C12.8420573,22.7940133 10,19.9296567 10,16.3970067 C10,12.8643566 12.8420573,10 16.349349,10 C19.8566406,10 22.6970052,12.8643566 22.6970052,16.3970067 C22.6970052,19.9296567 19.8566406,22.7940133 16.349349,22.7940133 Z M11.0325521,62 L21.769401,62 L21.769401,27.3333333 L11.0325521,27.3333333 L11.0325521,62 Z"/>
+        </svg>LinkedIn</a>
+
+      <a class="link-quiet" href="phillip-cai-resume.pdf">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+        </svg>Resume</a>
+    </p>
+
+    <section class="tech__section">
+      <h2 class="section-title">Experience</h2>
+
+      <article class="job">
+        <div class="job__head">
+          <img class="job__logo" src="logos/dataminr.jpg" alt=""
+               width="160" height="160" loading="lazy">
+          <h3 class="job__co">Dataminr</h3>
+          <p class="job__role">Senior Software Engineer</p>
+          <p class="job__dates">Sep 2025 &ndash; Present</p>
+        </div>
+        <ul class="job__points">
+          <li>Led platform engineering on Knowledge Platform 2.0 across a 4-engineer
+            team. Greenfield PostgreSQL entity resolution and knowledge graph system
+            replacing a Neo4j-based platform serving 10M+ entities and 19M+
+            relationships, supporting 39 entity types and 10+ data sources. Powers
+            real-time alerting for 1,000+ enterprise and government customers.</li>
+          <li>Built agentic data-quality pipelines: LLM workflows ingesting human
+            content-review signals to auto-populate missing entities and enrich
+            existing records in production.</li>
+          <li>Built Bronze/Silver data layer architecture: entity identity model
+            partitioned by entity type, temporal versioning for point-in-time entity
+            views, and authority-based conflict resolution across 4 trust tiers
+            (auto-resolve &amp; human-review thresholds).</li>
+          <li>Designed and shipped the bulk-write submission API: S3-backed payload
+            storage, async submission endpoints, per-row idempotent writes, and
+            resumable job state. Enabled migration of millions of entities from 5+
+            legacy data sources.</li>
+          <li>Unifying Dataminr's fragmented knowledge graphs into a single
+            consolidated graph &mdash; the core architectural mandate of KP 2.0: built
+            ETL pipelines (Databricks/PySpark) and entity resolution integration for
+            cyber intelligence sources; designing schema and ontology reconciliation
+            to ingest billions of entities from the ThreatConnect acquisition.</li>
+          <li>Redesigned the graph's data model to make Person a first-class entity
+            &mdash; previously buried as nested attributes on Organizations &mdash; to
+            power executive-protection alerting: owned the architecture, led a junior
+            engineer through implementation.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job__head">
+          <img class="job__logo" src="logos/meta.jpg" alt=""
+               width="160" height="160" loading="lazy">
+          <h3 class="job__co">Meta</h3>
+          <p class="job__role">Software Engineer</p>
+          <p class="job__dates">Apr 2022 &ndash; Oct 2024</p>
+        </div>
+        <ul class="job__points">
+          <li>Architected and implemented scalable role-based access control for
+            Meta's internal governance platform (PIMS) and replaced coarse, manual
+            gating with dynamic, granular permissions; reduced access request burden
+            by 71% across eng, legal, and policy teams; directed technical execution
+            with support from 2 engineers.</li>
+          <li>Led cross-functional design and implementation of Assessor Reporting
+            export infrastructure in PIMS, and enabled batch PDF/CSV exports across
+            apps, violations, enforcements, and disputes; cut audit prep time by 52%
+            in partnership with Legal.</li>
+        </ul>
+      </article>
+
+      <article class="job">
+        <div class="job__head">
+          <img class="job__logo" src="logos/oracle.jpg" alt=""
+               width="160" height="160" loading="lazy">
+          <h3 class="job__co">Oracle<span class="job__unit">Oracle Cloud Infrastructure (OCI)</span></h3>
+          <p class="job__role">Software Engineer</p>
+          <p class="job__dates">Jan 2020 &ndash; Feb 2022</p>
+        </div>
+        <ul class="job__points">
+          <li>Built and maintained a tier-zero distributed Limits system (Java,
+            Terraform, Go) enforcing IAM-scoped quotas across 150+ services in 40+
+            global regions; designed policy-aware APIs and region build automation to
+            provision 250+ cloud regions including U.S. government environments,
+            reducing manual setup by 90%.</li>
+        </ul>
+      </article>
+
+      <!-- No bullets: the source PDF ends at this line with none under it. -->
+      <article class="job">
+        <div class="job__head">
+          <img class="job__logo" src="logos/alarm-com.jpg" alt=""
+               width="160" height="160" loading="lazy">
+          <h3 class="job__co">Alarm.com</h3>
+          <p class="job__role">Software Engineer</p>
+          <p class="job__dates">Jun 2018 &ndash; Nov 2019</p>
+        </div>
+      </article>
+
+    </section>
+
+    <section class="tech__section">
+      <h2 class="section-title">Skills</h2>
+      <dl class="spec">
+        <div class="spec__row">
+          <dt class="spec__key">Languages</dt>
+          <dd class="spec__val">Java, Python, JavaScript, TypeScript, Go (Golang), SQL, C#</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="spec__key">Tools</dt>
+          <dd class="spec__val">Docker, Kubernetes, PostgreSQL, MySQL, SQL Server, DynamoDB,
+            Neo4j, AWS, S3, Databricks, PySpark (Spark), Airflow, Kinesis, Thrift,
+            Terraform, FastAPI, Pydantic, Alembic, React, GraphQL, Cypher,
+            OpenTelemetry, Prometheus, Grafana, Bazel</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="spec__key">Systems</dt>
+          <dd class="spec__val">Distributed systems, entity resolution, knowledge graphs,
+            data pipelines (ETL), agentic LLM workflows (GenAI data quality), REST,
+            microservices, IAM, access control, observability, DevOps</dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Reuses .job rather than the .spec list the skills use. An institution,
+         what you did there and when is the same shape as an employer, a role and
+         a span of dates -- and it puts Emory's mark in the column the four
+         company marks already occupy, so the page reads as one system instead of
+         two lists that happen to sit under each other. -->
+    <section class="tech__section">
+      <h2 class="section-title">Education</h2>
+
+      <article class="job">
+        <div class="job__head">
+          <img class="job__logo" src="logos/emory.jpg" alt=""
+               width="160" height="160" loading="lazy">
+          <h3 class="job__co">Emory University</h3>
+          <!-- Two majors, the second of them a joint degree. The middot separates the
+               two; the ampersand binds the pair that are one major. -->
+          <p class="job__role">BA, Computer Science &middot; Economics &amp; Mathematics</p>
+          <p class="job__dates">Dec 2017</p>
+        </div>
+      </article>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    &copy; 2026 Phillip Cai
+  </footer>
+
+</div>
+</body>
+</html>

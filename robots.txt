@@ -1,8 +1,16 @@
-# Everything here is meant to be found. Anything that isn't should carry
-# <meta name="robots" content="noindex"> instead of a Disallow line here:
-# a Disallow stops the crawl, so the noindex never gets read, and the URL can
-# still surface as a bare link. It would also publish the path you were hiding.
+# Everything here is meant to be found, with one exception below. Anything
+# else you want kept out should carry <meta name="robots" content="noindex">
+# rather than a Disallow line: a Disallow stops the crawl, so the noindex never
+# gets read, and the URL can still surface as a bare link. It would also publish
+# the path you were hiding. /tech/ is handled that way — it carries a noindex
+# and is deliberately absent from the sitemap, but it stays crawlable so the
+# noindex is actually seen.
+#
+# The PDF is the exception. A PDF has no <head>, so it cannot carry a meta tag,
+# and the only other lever is an X-Robots-Tag response header, which GitHub
+# Pages does not let us set. Blocking the crawl is the sole remaining option.
 User-agent: *
 Allow: /
+Disallow: /tech/*.pdf$
 
 Sitemap: https://www.phillipcai.com/sitemap.xml
