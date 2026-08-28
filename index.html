@@ -4,13 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Phillip Cai</title>
+<title>Phillip Cai — Writer-Director</title>
 <meta name="description" content="Phillip Cai is a writer-director based in Los Angeles.">
 
-<meta property="og:title" content="Phillip Cai">
+<meta property="og:title" content="Phillip Cai — Writer-Director">
 <meta property="og:description" content="Writer-director based in Los Angeles.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.phillipcai.com">
+<meta property="og:url" content="https://www.phillipcai.com/">
+
+<!-- Absolute, and always the www host: the apex 301s to www, so this is
+     the one address of this page. Without it a crawler that arrives on any
+     other spelling — apex, a tracking query string — treats it as a
+     separate page and splits the ranking between them. -->
+<link rel="canonical" href="https://www.phillipcai.com/">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +25,39 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
+<!-- Who this site is about, stated in a form a search engine parses rather
+     than infers. sameAs is the part that matters: it asserts that this
+     domain, that IMDb page, that Vimeo account and that Instagram are one
+     person, which is what consolidates the scattered pointers onto here.
+     Add a profile to the list whenever you add one to the contact page.
+
+     Homepage only. Duplicating it on about.html would mean two copies to
+     keep in step by hand, and one entity declared once is what Google
+     wants anyway. No email: it does nothing for ranking and would put one
+     more machine-readable copy of the address in front of scrapers. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.phillipcai.com/#phillip-cai",
+  "name": "Phillip Cai",
+  "alternateName": "蔡霏凡",
+  "url": "https://www.phillipcai.com/",
+  "jobTitle": "Writer-Director",
+  "description": "Chinese American writer-director based in Los Angeles.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Los Angeles",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.imdb.com/name/nm16647512/",
+    "https://vimeo.com/user261445631",
+    "https://www.instagram.com/phillip.cai"
+  ]
+}
+</script>
 </head>
 
 <body>

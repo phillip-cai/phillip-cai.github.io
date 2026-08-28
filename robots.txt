@@ -1,0 +1,8 @@
+# Everything here is meant to be found. Anything that isn't should carry
+# <meta name="robots" content="noindex"> instead of a Disallow line here:
+# a Disallow stops the crawl, so the noindex never gets read, and the URL can
+# still surface as a bare link. It would also publish the path you were hiding.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.phillipcai.com/sitemap.xml
