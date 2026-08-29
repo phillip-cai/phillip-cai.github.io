@@ -26,6 +26,78 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/base.css">
 <link rel="stylesheet" href="css/layout.css">
+<!-- The film as an entity, not just a page about a film.
+
+     Every role points at the same @id as the Person block on the homepage,
+     so this does not describe some other Phillip Cai — it attaches four
+     credits to the entity that already claims your IMDb, Vimeo and
+     Instagram. Director, writer, producer and editor are four separate
+     schema properties, which is why the same object appears four times.
+
+     schema.org has no ShortFilm type; Movie is correct for a short.
+
+     dateCreated rather than datePublished, because the film is not
+     publicly viewable — the Vimeo embed is still password-gated. Switch it
+     when that changes.
+
+     genre, duration, inLanguage and countryOfOrigin are asserted here but shown
+     nowhere on the page. That is a deliberate exception to Google's guidance that
+     markup represent visible content — the page is a director's page, not a
+     listing, and none of these earn a rich result that would justify a row of
+     fields on it. All four are true. If structured data ever stops being picked
+     up for this page, this block is the first thing to look at. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Movie",
+  "@id": "https://www.phillipcai.com/family-style#film",
+  "name": "Family Style",
+  "url": "https://www.phillipcai.com/family-style",
+  "description": "Two sisters share takeout at a cramped table when one announcement changes everything between them.",
+  "image": "https://www.phillipcai.com/images/family-style-poster.jpg",
+  "dateCreated": "2026",
+  "genre": "Drama",
+  "duration": "PT2M27S",
+  "inLanguage": [
+    "en",
+    "zh"
+  ],
+  "countryOfOrigin": {
+    "@type": "Country",
+    "name": "United States"
+  },
+  "director": {
+    "@type": "Person",
+    "@id": "https://www.phillipcai.com/#phillip-cai",
+    "name": "Phillip Cai"
+  },
+  "author": {
+    "@type": "Person",
+    "@id": "https://www.phillipcai.com/#phillip-cai",
+    "name": "Phillip Cai"
+  },
+  "producer": {
+    "@type": "Person",
+    "@id": "https://www.phillipcai.com/#phillip-cai",
+    "name": "Phillip Cai"
+  },
+  "editor": {
+    "@type": "Person",
+    "@id": "https://www.phillipcai.com/#phillip-cai",
+    "name": "Phillip Cai"
+  },
+  "actor": [
+    {
+      "@type": "Person",
+      "name": "Kathy Chang"
+    },
+    {
+      "@type": "Person",
+      "name": "Katy Ho"
+    }
+  ]
+}
+</script>
 </head>
 
 <body>
